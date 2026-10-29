@@ -3,3 +3,4 @@ int puntos = 100;
 if (puntos != 0) {
     puntos = 50;
 }
+

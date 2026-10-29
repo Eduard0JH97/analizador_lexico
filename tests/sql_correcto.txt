@@ -1,2 +1,3 @@
 SELECT * FROM usuarios WHERE id == 10;
 SELECT nombre FROM clientes;
+
