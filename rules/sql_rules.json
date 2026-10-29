@@ -1,0 +1,9 @@
+{
+  "lenguaje": "SQL",
+  "palabras_reservadas": ["SELECT", "FROM", "WHERE", "INSERT", "INTO", "VALUES", "UPDATE", "SET", "DELETE", "AND", "OR", "NOT", "JOIN", "INNER", "LEFT", "RIGHT", "ON", "GROUP", "BY", "ORDER", "ASC", "DESC"],
+  "simbolos_especiales": [";", "(", ")", ",", "*"],
+  "op_aritmeticos": ["+", "-", "*", "/"],
+  "op_relacionales": [">=", "<=", "<>", "!=", "=", ">", "<"],
+  "op_logicos": ["AND", "OR", "NOT"],
+  "ignorar": [" ", "\t", "\n"]
+}

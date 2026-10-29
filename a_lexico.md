@@ -8,6 +8,7 @@
 - [Hito 2]: Implementación del motor de Expresiones Regulares en core/lexer.py.
 - [Hito 3]: Clasificación estricta de operadores y lectura interactiva de archivos .txt.
 - [Hito 4]: Implementación de parser.py con validación de 3 reglas de producción sintácticas.
+- [Hito 5]: Integracion de reglas JSON para Java, SQL y Python, con seleccion dinamica en main.py y parser adaptativo.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Realizar pruebas finales inyectando errores intencionales en test_c.txt.
+* Siguiente Tarea Inmediata: Agregar casos de prueba en tests/ para SQL, Java y Python.

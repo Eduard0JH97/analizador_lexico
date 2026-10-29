@@ -1,0 +1,9 @@
+{
+  "lenguaje": "Python",
+  "palabras_reservadas": ["def", "class", "if", "elif", "else", "while", "for", "in", "return", "import", "from", "as", "True", "False", "None", "and", "or", "not"],
+  "simbolos_especiales": [":", "(", ")", "[", "]", "{", "}", "=", ",", "."],
+  "op_aritmeticos": ["//", "**", "+", "-", "*", "/", "%"],
+  "op_relacionales": [">=", "<=", "==", "!=", ">", "<"],
+  "op_logicos": ["and", "or", "not"],
+  "ignorar": [" ", "\t", "\r"]
+}

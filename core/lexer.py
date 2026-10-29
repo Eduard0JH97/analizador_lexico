@@ -38,8 +38,10 @@ class Lexer:
             if tipo == 'ESPACIO':
                 continue
                 
-            if tipo == 'IDENTIFICADOR' and valor in self.rules.get('palabras_reservadas', []):
-                tipo = 'PALABRA_RESERVADA'
+            if tipo == 'IDENTIFICADOR':
+                palabras = self.rules.get('palabras_reservadas', [])
+                if valor in palabras or (self.rules.get('lenguaje') == 'SQL' and valor.upper() in palabras):
+                    tipo = 'PALABRA_RESERVADA'
                 
             tokens.append((tipo, valor))
         return tokens

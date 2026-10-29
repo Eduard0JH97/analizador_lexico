@@ -1,0 +1,9 @@
+{
+  "lenguaje": "Java",
+  "palabras_reservadas": ["public", "private", "protected", "class", "static", "void", "int", "float", "double", "String", "boolean", "if", "else", "while", "for", "return", "new"],
+  "simbolos_especiales": ["{", "}", ";", "(", ")", "[", "]", "=", ",", "."],
+  "op_aritmeticos": ["+", "-", "*", "/", "%"],
+  "op_relacionales": [">=", "<=", "==", "!=", ">", "<"],
+  "op_logicos": ["&&", "||", "!"],
+  "ignorar": [" ", "\t", "\n"]
+}

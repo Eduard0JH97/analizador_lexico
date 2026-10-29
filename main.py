@@ -3,44 +3,64 @@ from core.lexer import Lexer
 from core.parser import Parser
 from utils.file_reader import leer_archivo
 
+OPCIONES_LENGUAJES = {
+    "1": ("C", "rules/c_rules.json"),
+    "2": ("Java", "rules/java_rules.json"),
+    "3": ("SQL", "rules/sql_rules.json"),
+    "4": ("Python", "rules/python_rules.json")
+}
+
 def main():
-    print("--- Analizador Léxico y Sintáctico ---")
-    rules_path = pathlib.Path("rules/c_rules.json")
+    print("=== Analizador Multilenguaje ===")
+    print("Seleccione el lenguaje a analizar:")
+    print("1. C")
+    print("2. Java")
+    print("3. SQL")
+    print("4. Python")
     
-    if not rules_path.exists():
-        print("Error: No se encontró c_rules.json.")
+    opcion = input("Opcion (1-4): ").strip()
+    if opcion not in OPCIONES_LENGUAJES:
+        print("Opcion no valida.")
         return
-        
-    lexer = Lexer(str(rules_path))
-    ruta_txt = input("Ingrese la ruta del archivo fuente (.txt): ")
-    
+
+    lenguaje, ruta_reglas = OPCIONES_LENGUAJES[opcion]
+    reglas_path = pathlib.Path(ruta_reglas)
+    if not reglas_path.exists():
+        print(f"Error: No existe el archivo de configuracion {ruta_reglas}")
+        return
+
+    lexer = Lexer(str(reglas_path))
+    print(f"\nModo activo: {lenguaje}")
+
+    ruta_txt = input("Ingrese la ruta del archivo fuente (.txt): ").strip()
+
     try:
-        codigo_fuente = leer_archivo(ruta_txt)
-        print("\n[ FASE 1: Análisis Léxico ]")
-        tokens = lexer.tokenize(codigo_fuente)
-        
-        hay_errores_lexicos = False
-        for t in tokens:
-            if t[0] != 'ESPACIO':
-                print(f"{t[0]:<20} -> {t[1]}")
-            if t[0] == 'DESCONOCIDO':
-                print(f"  [!] ERROR LÉXICO: Caracter no reconocido '{t[1]}'")
-                hay_errores_lexicos = True
-                
-        if hay_errores_lexicos:
-            print("\nSe detiene el analisis por errores lexicos.")
+        codigo = leer_archivo(ruta_txt)
+        print("\n--- [1] Analisis Lexico ---")
+        tokens = lexer.tokenize(codigo)
+
+        errores_lexicos = 0
+        for tipo, valor in tokens:
+            if tipo != "ESPACIO":
+                print(f"{tipo:<20} -> {valor}")
+            if tipo == "DESCONOCIDO":
+                print(f"  [!] ERROR LEXICO: Caracter no admitido '{valor}'")
+                errores_lexicos += 1
+
+        if errores_lexicos > 0:
+            print(f"\nSe detuvo el analisis: se encontraron {errores_lexicos} error(es) lexicos.")
             return
-            
-        print("\n[ FASE 2: Análisis Sintáctico ]")
-        parser = Parser(tokens)
+
+        print("\n--- [2] Analisis Sintactico ---")
+        parser = Parser(tokens, lenguaje=lenguaje)
         errores_sintacticos = parser.parse()
-        
+
         if not errores_sintacticos:
-            print("El analisis sintactico termino SIN ERRORES. El codigo es correcto.")
+            print("Analisis sintactico finalizado con EXITO (0 errores).")
         else:
-            for error in errores_sintacticos:
-                print(f"[!] {error}")
-                
+            for err in errores_sintacticos:
+                print(f"[!] {err}")
+
     except Exception as e:
         print(f"\n[Error]: {e}")
 
