@@ -51,6 +51,10 @@ def analizar_archivo(ruta_txt: str, lexer: Lexer, lenguaje: str):
     try:
         codigo = leer_archivo(ruta_txt)
         print(f"\n[+] Analizando archivo: {ruta_txt}")
+        print("\n--- Codigo Fuente a Analizar ---")
+        print("-" * 45)
+        print(codigo.strip())
+        print("-" * 45)
         print("\n--- [1] Analisis Lexico ---")
         tokens = lexer.tokenize(codigo)
 

@@ -3,3 +3,4 @@ int paso = 1;
 if (paso != 0) {
     factor = factor * 3;
 }
+

@@ -17,6 +17,7 @@
 - [Hito 11]: Implementacion de bucle principal interactivo con opcion de salida y tolerancia a rutas invalidas en main.py.
 - [Hito 12]: Correccion en parse_sql para aceptar el comodin '*' categorizado como OP_ARITMETICO y soporte de operadores relacionales compuestos en WHERE.
 - [Hito 13]: Adicion de set secundario de pruebas en tests/ para C, Java, SQL y Python con casos de borde y errores especificos.
+- [Hito 14]: Modificacion de main.py para imprimir el codigo fuente analizado previo a la fase lexica.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Ejecutar en terminal las nuevas pruebas complementarias desde main.py.
+* Siguiente Tarea Inmediata: Ejecutar pruebas en terminal para comprobar la visualizacion previa del codigo fuente.
