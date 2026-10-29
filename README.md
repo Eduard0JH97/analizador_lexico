@@ -51,3 +51,4 @@ El analizador clasifica de forma dinámica los componentes en base a configuraci
    * `tests/java_valido.txt` / `tests/java_error.txt`
    * `tests/sql_valido.txt` / `tests/sql_error.txt`
    * `tests/python_valido.txt` / `tests/python_error.txt`
+
