@@ -7,3 +7,4 @@
   "op_logicos": ["AND", "OR", "NOT"],
   "ignorar": [" ", "\t", "\n"]
 }
+
