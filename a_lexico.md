@@ -10,6 +10,7 @@
 - [Hito 4]: Implementación de parser.py con validación de 3 reglas de producción sintácticas.
 - [Hito 5]: Integracion de reglas JSON para Java, SQL y Python, con seleccion dinamica en main.py y parser adaptativo.
 - [Hito 6]: Configuracion estricta de directivas inquebrantables de ejecucion autonoma (Zero-Click y Auto-Commit/Push obligatorio).
+- [Hito 7]: Unificacion definitiva de directivas autonomas criticas Zero-Click, py_compile y auto-commit push.
 
 ## 7. Próximos Pasos
 * Siguiente Tarea Inmediata: Agregar casos de prueba en tests/ para SQL, Java y Python.
