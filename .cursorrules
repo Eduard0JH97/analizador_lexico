@@ -1,0 +1,4 @@
+# Antigravity / Agent Rules
+- Mode: Turbo Mode (Sandbox bypass authorized for git, python, terminal).
+- Direct Write: Always write, edit, and save files directly without requiring user clicks or diff confirmations.
+- Auto-Commit: Execute git add -A, git commit, and git push automatically upon task completion.

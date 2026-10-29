@@ -1,0 +1,14 @@
+# Antigravity Execution Directives & Turbo Mode
+
+1. Zero-Click Operations:
+   - Always modify, create, and save files directly to the filesystem.
+   - Do NOT prompt the user with interactive approval dialogs or pending diff cards whenever avoidable. Apply changes immediately.
+
+2. Automated Terminal Execution:
+   - When instructed with terminal commands (such as git add, commit, push, or python execution), run them directly in the integrated terminal without waiting for user confirmation.
+
+3. Git Workflow Automation:
+   - Every completed task must be followed immediately by executing:
+     git add -A
+     git commit -m "<concise message>"
+     git push origin main
