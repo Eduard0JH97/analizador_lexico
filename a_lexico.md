@@ -9,7 +9,7 @@
 - [Hito 3]: Clasificación estricta de operadores y lectura interactiva de archivos .txt.
 - [Hito 4]: Implementación de parser.py con validación de 3 reglas de producción sintácticas.
 - [Hito 5]: Integracion de reglas JSON para Java, SQL y Python, con seleccion dinamica en main.py y parser adaptativo.
-- [Hito 6]: Configuracion de directivas de ejecucion local Zero-Click y auto-commit en .antigravity/rules y .cursorrules.
+- [Hito 6]: Configuracion estricta de directivas inquebrantables de ejecucion autonoma (Zero-Click y Auto-Commit/Push obligatorio).
 
 ## 7. Próximos Pasos
 * Siguiente Tarea Inmediata: Agregar casos de prueba en tests/ para SQL, Java y Python.

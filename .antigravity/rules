@@ -1,14 +1,14 @@
-# Antigravity Execution Directives & Turbo Mode
+# DIRECTIVAS CRÍTICAS E INQUEBRANTABLES DE EJECUCIÓN AUTÓNOMA
 
-1. Zero-Click Operations:
-   - Always modify, create, and save files directly to the filesystem.
-   - Do NOT prompt the user with interactive approval dialogs or pending diff cards whenever avoidable. Apply changes immediately.
+## 1. PROHIBICIÓN DE EDICIÓN CON CONFIRMACIÓN MANUAL (ZERO-CLICK POLICY)
+- Con el fin de evitar que VS Code bloquee el flujo con el botón "Accept all" (Inline Diffs), **queda estrictamente prohibido** dejar cambios pendientes en el editor de diferencias cuando se pueda evitar, o detener el flujo esperando confirmación del usuario.
+- Prioriza aplicar modificaciones de archivos escribiendo directamente en disco mediante scripts rápidos de Python (`pathlib.Path.write_text(..., encoding='utf-8')`) ejecutados en la terminal integrada, o asegúrate de ejecutar el commit inmediatamente en el mismo turno de ejecución.
 
-2. Automated Terminal Execution:
-   - When instructed with terminal commands (such as git add, commit, push, or python execution), run them directly in the integrated terminal without waiting for user confirmation.
-
-3. Git Workflow Automation:
-   - Every completed task must be followed immediately by executing:
-     git add -A
-     git commit -m "<concise message>"
-     git push origin main
+## 2. PROTOCOLO OBLIGATORIO DE AUTO-COMMIT Y AUTO-PUSH
+- **NUNCA** des por finalizada una respuesta o tarea dejando archivos modificados sin commitear en el panel de Source Control.
+- En el mismo turno, inmediatamente después de modificar cualquier archivo del proyecto y verificar que no existan errores de sintaxis (`python -m py_compile <archivo>`), **DEBES ejecutar de forma autónoma y obligatoria en la terminal**:
+  ```bash
+  git add -A
+  git commit -m "<tipo>(<alcance>): <descripcion concisa del cambio en español>"
+  git push origin main
+  ```
