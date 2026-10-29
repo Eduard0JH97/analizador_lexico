@@ -14,49 +14,40 @@ def seleccionar_archivo_fuente() -> str:
     directorio_tests = pathlib.Path("tests")
     archivos_txt = sorted(list(directorio_tests.glob("*.txt"))) if directorio_tests.exists() else []
 
-    print("\n--- Seleccion de Archivo Fuente (.txt) ---")
-    if archivos_txt:
-        print("Archivos disponibles en carpeta 'tests/':")
-        for i, archivo in enumerate(archivos_txt, start=1):
-            print(f"  {i}. {archivo.name}")
-        print(f"  {len(archivos_txt) + 1}. Ingresar otra ruta manualmente")
-        
-        opcion = input(f"Seleccione un archivo (1-{len(archivos_txt) + 1}): ").strip()
-        
-        if opcion.isdigit():
-            indice = int(opcion)
-            if 1 <= indice <= len(archivos_txt):
-                return str(archivos_txt[indice - 1])
-            elif indice == len(archivos_txt) + 1:
-                return input("Ingrese la ruta del archivo fuente (.txt): ").strip()
-        print("Opcion invalida. Cambiando a ingreso manual.")
-    
-    return input("Ingrese la ruta de ubicacion del archivo fuente (.txt): ").strip()
+    while True:
+        print("\n--- Seleccion de Archivo Fuente (.txt) ---")
+        if archivos_txt:
+            print("Archivos disponibles en carpeta 'tests/':")
+            for i, archivo in enumerate(archivos_txt, start=1):
+                print(f"  {i}. {archivo.name}")
+            print(f"  {len(archivos_txt) + 1}. Ingresar otra ruta manualmente")
+            print(f"  0. Cancelar y regresar al menu de lenguajes")
+            
+            opcion = input(f"Seleccione un archivo (0-{len(archivos_txt) + 1}): ").strip()
+            
+            if opcion == "0":
+                return ""
+                
+            if opcion.isdigit():
+                indice = int(opcion)
+                if 1 <= indice <= len(archivos_txt):
+                    return str(archivos_txt[indice - 1])
+                elif indice == len(archivos_txt) + 1:
+                    ruta = input("Ingrese la ruta del archivo fuente (.txt): ").strip()
+                    if pathlib.Path(ruta).is_file():
+                        return ruta
+                    print(f"\n[!] Ruta invalida: '{ruta}' no es un archivo valido o no existe. Intente nuevamente.")
+                    continue
+            print("\n[!] Opcion invalida. Intente de nuevo.")
+        else:
+            ruta = input("Ingrese la ruta del archivo fuente (.txt) (o '0' para volver): ").strip()
+            if ruta == "0":
+                return ""
+            if pathlib.Path(ruta).is_file():
+                return ruta
+            print(f"\n[!] Ruta invalida: '{ruta}' no existe. Intente de nuevo.")
 
-def main():
-    print("=== Analizador Multilenguaje ===")
-    print("Seleccione el lenguaje a analizar:")
-    print("1. C")
-    print("2. Java")
-    print("3. SQL")
-    print("4. Python")
-    
-    opcion = input("Opcion (1-4): ").strip()
-    if opcion not in OPCIONES_LENGUAJES:
-        print("Opcion no valida.")
-        return
-
-    lenguaje, ruta_reglas = OPCIONES_LENGUAJES[opcion]
-    reglas_path = pathlib.Path(ruta_reglas)
-    if not reglas_path.exists():
-        print(f"Error: No existe el archivo de configuracion {ruta_reglas}")
-        return
-
-    lexer = Lexer(str(reglas_path))
-    print(f"\nModo activo: {lenguaje}")
-
-    ruta_txt = seleccionar_archivo_fuente()
-
+def analizar_archivo(ruta_txt: str, lexer: Lexer, lenguaje: str):
     try:
         codigo = leer_archivo(ruta_txt)
         print(f"\n[+] Analizando archivo: {ruta_txt}")
@@ -86,7 +77,45 @@ def main():
                 print(f"[!] {err}")
 
     except Exception as e:
-        print(f"\n[Error]: {e}")
+        print(f"\n[Error durante el analisis]: {e}")
+
+def main():
+    while True:
+        print("\n" + "=" * 45)
+        print("         ANALIZADOR MULTILENGUAJE")
+        print("=" * 45)
+        print("1. C")
+        print("2. Java")
+        print("3. SQL")
+        print("4. Python")
+        print("0. Salir del programa")
+        
+        opcion = input("Seleccione una opcion (0-4): ").strip()
+        
+        if opcion == "0":
+            print("\nFinalizando ejecucion del programa. ¡Hasta pronto!")
+            break
+            
+        if opcion not in OPCIONES_LENGUAJES:
+            print("\n[!] Opcion no valida. Seleccione un numero del 0 al 4.")
+            continue
+
+        lenguaje, ruta_reglas = OPCIONES_LENGUAJES[opcion]
+        reglas_path = pathlib.Path(ruta_reglas)
+        if not reglas_path.exists():
+            print(f"\n[!] Error: No existe el archivo de configuracion {ruta_reglas}")
+            continue
+
+        lexer = Lexer(str(reglas_path))
+        print(f"\n--> Modo activo: {lenguaje}")
+
+        ruta_txt = seleccionar_archivo_fuente()
+        if not ruta_txt:
+            continue
+
+        analizar_archivo(ruta_txt, lexer, lenguaje)
+
+        input("\nPresione [ENTER] para continuar...")
 
 if __name__ == "__main__":
     main()
