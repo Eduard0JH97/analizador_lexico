@@ -1,0 +1,4 @@
+int saldo = 50;
+if (saldo <= 20 {
+    saldo = saldo + 10;
+}

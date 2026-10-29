@@ -1,0 +1,5 @@
+float promedio = 85;
+int limite = 100;
+if (promedio < limite) {
+    promedio = promedio + 5;
+}

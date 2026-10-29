@@ -1,3 +1,0 @@
-def procesar(
-x = 
-if x > 10

@@ -1,0 +1,2 @@
+SELECT id FROM pedidos WHERE total >= 500;
+SELECT total FROM ventas;

@@ -1,4 +1,0 @@
-float tasa = ;
-if (tasa < 100 {
-    tasa = 10;
-}

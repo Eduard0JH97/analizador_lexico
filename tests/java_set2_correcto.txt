@@ -1,6 +1,0 @@
-boolean flag = 1;
-double saldo = 500;
-saldo = saldo;
-if (saldo > 100) {
-    flag = 0;
-}

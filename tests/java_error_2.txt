@@ -1,0 +1,4 @@
+int = 100;
+if (factor > 5) {
+    paso = 2
+}

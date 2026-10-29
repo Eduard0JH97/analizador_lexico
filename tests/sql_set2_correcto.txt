@@ -1,2 +1,0 @@
-select id from empleados where salario >= 2500;
-SELECT * FROM productos WHERE stock <> limite;
