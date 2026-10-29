@@ -13,6 +13,7 @@
 - [Hito 7]: Unificacion definitiva de directivas autonomas criticas Zero-Click, py_compile y auto-commit push.
 - [Hito 8]: Creacion de suite de pruebas .txt validas y con errores para C, Java, SQL y Python.
 - [Hito 9]: Creacion de documentacion formal de producciones BNF y manual de usuario en README.md.
+- [Hito 10]: Implementacion de selector interactivo de archivos de prueba desde la carpeta tests/ en main.py.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Proyecto concluido. Realizar corrida de demostracion final en terminal.
+* Siguiente Tarea Inmediata: Probar la seleccion automatica de archivos en tests/ ejecutando main.py.

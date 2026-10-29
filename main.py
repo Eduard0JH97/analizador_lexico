@@ -10,6 +10,29 @@ OPCIONES_LENGUAJES = {
     "4": ("Python", "rules/python_rules.json")
 }
 
+def seleccionar_archivo_fuente() -> str:
+    directorio_tests = pathlib.Path("tests")
+    archivos_txt = sorted(list(directorio_tests.glob("*.txt"))) if directorio_tests.exists() else []
+
+    print("\n--- Seleccion de Archivo Fuente (.txt) ---")
+    if archivos_txt:
+        print("Archivos disponibles en carpeta 'tests/':")
+        for i, archivo in enumerate(archivos_txt, start=1):
+            print(f"  {i}. {archivo.name}")
+        print(f"  {len(archivos_txt) + 1}. Ingresar otra ruta manualmente")
+        
+        opcion = input(f"Seleccione un archivo (1-{len(archivos_txt) + 1}): ").strip()
+        
+        if opcion.isdigit():
+            indice = int(opcion)
+            if 1 <= indice <= len(archivos_txt):
+                return str(archivos_txt[indice - 1])
+            elif indice == len(archivos_txt) + 1:
+                return input("Ingrese la ruta del archivo fuente (.txt): ").strip()
+        print("Opcion invalida. Cambiando a ingreso manual.")
+    
+    return input("Ingrese la ruta de ubicacion del archivo fuente (.txt): ").strip()
+
 def main():
     print("=== Analizador Multilenguaje ===")
     print("Seleccione el lenguaje a analizar:")
@@ -32,10 +55,11 @@ def main():
     lexer = Lexer(str(reglas_path))
     print(f"\nModo activo: {lenguaje}")
 
-    ruta_txt = input("Ingrese la ruta del archivo fuente (.txt): ").strip()
+    ruta_txt = seleccionar_archivo_fuente()
 
     try:
         codigo = leer_archivo(ruta_txt)
+        print(f"\n[+] Analizando archivo: {ruta_txt}")
         print("\n--- [1] Analisis Lexico ---")
         tokens = lexer.tokenize(codigo)
 
