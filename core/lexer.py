@@ -13,17 +13,19 @@ class Lexer:
             return json.load(f)
             
     def _build_regex(self):
-        # Ordenar símbolos de mayor a menor longitud para match exacto (ej. '==' antes que '=')
-        simbolos = sorted(self.rules.get('simbolos', []), key=len, reverse=True)
-        escaped_simbolos = [re.escape(s) for s in simbolos]
-        
-        # Ensamblar las partes de la expresión regular dinámica
+        def procesar_grupo(llave):
+            items = sorted(self.rules.get(llave, []), key=len, reverse=True)
+            return '|'.join([re.escape(i) for i in items]) if items else '(?!)'
+            
         regex_parts = [
-            r'(?P<NUMERO>\d+)',
-            r'(?P<SIMBOLO>' + '|'.join(escaped_simbolos) + r')',
-            r'(?P<ID>[a-zA-Z_][a-zA-Z0-9_]*)',
+            r'(?P<NUMERO_ENTERO>\d+)',
+            r'(?P<OP_RELACIONAL>' + procesar_grupo('op_relacionales') + r')',
+            r'(?P<OP_LOGICO>' + procesar_grupo('op_logicos') + r')',
+            r'(?P<OP_ARITMETICO>' + procesar_grupo('op_aritmeticos') + r')',
+            r'(?P<SIMB_ESPECIAL>' + procesar_grupo('simbolos_especiales') + r')',
+            r'(?P<IDENTIFICADOR>[a-zA-Z_][a-zA-Z0-9_]*)',
             r'(?P<ESPACIO>[\s\t\n]+)',
-            r'(?P<DESCONOCIDO>.)' # Captura cualquier caracter que no encaje
+            r'(?P<DESCONOCIDO>.)'
         ]
         self.token_regex = re.compile('|'.join(regex_parts))
 
@@ -36,9 +38,8 @@ class Lexer:
             if tipo == 'ESPACIO':
                 continue
                 
-            # Validar si un ID es en realidad una palabra reservada del JSON
-            if tipo == 'ID' and valor in self.rules.get('palabras_reservadas', []):
-                tipo = 'RESERVADA'
+            if tipo == 'IDENTIFICADOR' and valor in self.rules.get('palabras_reservadas', []):
+                tipo = 'PALABRA_RESERVADA'
                 
             tokens.append((tipo, valor))
         return tokens

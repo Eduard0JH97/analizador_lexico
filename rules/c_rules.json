@@ -1,7 +1,9 @@
 {
   "lenguaje": "C",
   "palabras_reservadas": ["int", "float", "if", "else", "while", "return"],
-  "simbolos": ["{", "}", ";", "(", ")", "=", ",", "+", "-", "*", "/", ">", "<", ">=", "<=", "==", "!=", "&&", "||", "!"],
+  "simbolos_especiales": ["{", "}", ";", "(", ")", "=", ","],
+  "op_aritmeticos": ["+", "-", "*", "/"],
+  "op_relacionales": [">=", "<=", "==", "!=", ">", "<"],
+  "op_logicos": ["&&", "||", "!"],
   "ignorar": [" ", "\t", "\n"]
 }
-
