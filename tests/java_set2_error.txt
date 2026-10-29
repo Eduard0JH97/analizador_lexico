@@ -1,0 +1,4 @@
+int total = 10;
+saldo = ;
+if (total > 0) {
+    total = 20;

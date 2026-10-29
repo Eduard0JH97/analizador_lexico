@@ -1,0 +1,4 @@
+def iniciar():
+estado = 1
+if estado == 1:
+def finalizar():

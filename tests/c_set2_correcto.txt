@@ -1,0 +1,6 @@
+float tasa = 5;
+int limite = 100;
+tasa = 10;
+if (tasa < limite) {
+    limite = 50;
+}
