@@ -15,3 +15,4 @@ class Lexer:
         # TODO: Implementar la lógica de escaneo dinámico con Regex
         print(f"Lenguaje configurado: {self.rules.get('lenguaje')}")
         pass
+

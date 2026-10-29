@@ -8,3 +8,4 @@
 
 ## 7. Próximos Pasos
 * Siguiente Tarea Inmediata: Completar la lógica de la función tokenize con expresiones regulares en core/lexer.py.
+
