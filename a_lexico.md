@@ -11,6 +11,7 @@
 - [Hito 5]: Integracion de reglas JSON para Java, SQL y Python, con seleccion dinamica en main.py y parser adaptativo.
 - [Hito 6]: Configuracion estricta de directivas inquebrantables de ejecucion autonoma (Zero-Click y Auto-Commit/Push obligatorio).
 - [Hito 7]: Unificacion definitiva de directivas autonomas criticas Zero-Click, py_compile y auto-commit push.
+- [Hito 8]: Creacion de suite de pruebas .txt validas y con errores para C, Java, SQL y Python.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Agregar casos de prueba en tests/ para SQL, Java y Python.
+* Siguiente Tarea Inmediata: Ejecutar pruebas interactivas en consola para validar reportes de error sintactico y lexico.

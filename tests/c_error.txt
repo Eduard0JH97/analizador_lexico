@@ -1,0 +1,3 @@
+int total = 20
+if (total > 0) {
+    total = total - 1;
