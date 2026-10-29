@@ -82,15 +82,26 @@ class Parser:
             token_type, token_val = self.current_token()
             if token_type == "PALABRA_RESERVADA" and token_val.upper() == "SELECT":
                 self.advance()
-                if not (self.match("SIMB_ESPECIAL", "*") or self.match("IDENTIFICADOR")):
+                # Acepta comodín * (ya sea catalogado como OP_ARITMETICO o SIMB_ESPECIAL) o un IDENTIFICADOR
+                if self.current_token()[1] == "*" or self.current_token()[0] == "IDENTIFICADOR":
+                    self.advance()
+                else:
                     self.errores.append("Error Sintactico en SELECT: Se esperaba columna o '*'")
+                
                 self.expect("PALABRA_RESERVADA", "FROM", context="en consulta SELECT")
                 self.expect("IDENTIFICADOR", context="especificando tabla en FROM")
-                if self.match("PALABRA_RESERVADA", "WHERE"):
+                
+                # Clausula WHERE opcional
+                token_type, token_val = self.current_token()
+                if token_type == "PALABRA_RESERVADA" and token_val.upper() == "WHERE":
+                    self.advance()
                     self.expect("IDENTIFICADOR", context="en clausula WHERE")
-                    if self.current_token()[0] in ["OP_RELACIONAL", "SIMB_ESPECIAL"]:
+                    # Consumir operador relacional o símbolo (=, ==, <>, !=, etc.)
+                    while self.current_token()[0] in ["OP_RELACIONAL", "SIMB_ESPECIAL"] and self.current_token()[1] in ["=", "==", "!=", "<>", ">", "<", ">=", "<="]:
                         self.advance()
-                    self.match("NUMERO_ENTERO") or self.match("IDENTIFICADOR")
+                    if not (self.match("NUMERO_ENTERO") or self.match("IDENTIFICADOR")):
+                        self.errores.append("Error Sintactico: Se esperaba un valor o identificador de comparacion en WHERE")
+                        
                 self.expect("SIMB_ESPECIAL", ";", context="al final de la sentencia SQL")
             else:
                 self.advance()

@@ -15,6 +15,7 @@
 - [Hito 9]: Creacion de documentacion formal de producciones BNF y manual de usuario en README.md.
 - [Hito 10]: Implementacion de selector interactivo de archivos de prueba desde la carpeta tests/ en main.py.
 - [Hito 11]: Implementacion de bucle principal interactivo con opcion de salida y tolerancia a rutas invalidas en main.py.
+- [Hito 12]: Correccion en parse_sql para aceptar el comodin '*' categorizado como OP_ARITMETICO y soporte de operadores relacionales compuestos en WHERE.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Ejecutar pruebas interactivas continuas en la terminal con main.py.
+* Siguiente Tarea Inmediata: Volver a ejecutar tests/sql_correcto.txt y validar 0 errores sintacticos.
