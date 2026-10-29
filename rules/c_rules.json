@@ -1,0 +1,6 @@
+{
+  "lenguaje": "C",
+  "palabras_reservadas": ["int", "float", "if", "else", "while", "return"],
+  "simbolos": ["{", "}", ";", "(", ")", "=", ",", "+", "-", "*", "/", ">", "<", ">=", "<=", "==", "!=", "&&", "||", "!"],
+  "ignorar": [" ", "\t", "\n"]
+}
