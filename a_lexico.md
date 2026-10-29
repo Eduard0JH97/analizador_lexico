@@ -5,7 +5,7 @@
 
 ## 5. Historial de Hitos
 - [Hito 1]: Creación de directorios, bitácora a_lexico.md, motor genérico y reglas JSON.
+- [Hito 2]: Implementación del motor de Expresiones Regulares en core/lexer.py.
 
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Completar la lógica de la función tokenize con expresiones regulares en core/lexer.py.
-
+* Siguiente Tarea Inmediata: Implementar lectura de archivos externos (test_c.txt) usando utils/file_reader.py y manejar errores léxicos.
