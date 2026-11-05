@@ -21,5 +21,7 @@
 
 - [Hito 15]: Bloqueo estricto de herramientas nativas de edicion UI y escritura exclusiva por terminal via pathlib para erradicar el dialogo Accept all.
 
+- [Hito 16]: Configuracion de launch.json y settings.json para ejecucion limpia con boton Play de VS Code.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Ejecutar pruebas con archivos con errores en tests/ para comprobar el reporte con ubicacion espacial.
+* Siguiente Tarea Inmediata: Presionar el boton Play (▷) en la esquina superior derecha y verificar el inicio del menu interactivo.
