@@ -31,5 +31,7 @@
 
 - [Hito 20]: Implementacion de script de empaquetado limpio y generacion de analizador_lexico_entrega.zip libre de configuraciones locales.
 
+- [Hito 21]: Creacion del script lanzador ejecutar_analizador.bat para arranque directo en Windows e inclusion en el empaquetador zip.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Verificar el contenido del archivo analizador_lexico_entrega.zip generado.
+* Siguiente Tarea Inmediata: Hacer doble clic en ejecutar_analizador.bat para comprobar el arranque interactivo fuera de VS Code.

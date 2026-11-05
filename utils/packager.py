@@ -21,6 +21,7 @@ EXPLICIT_TARGETS = [
     'rules',
     'tests',
     'utils',
+    'ejecutar_analizador.bat',
     'main.py',
     'README.md',
 ]
