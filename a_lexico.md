@@ -29,5 +29,7 @@
 
 - [Hito 19]: Configuracion de Command Prompt como terminal por defecto en settings.json para mitigar el bug de comillas dobles del boton Play.
 
+- [Hito 20]: Implementacion de script de empaquetado limpio y generacion de analizador_lexico_entrega.zip libre de configuraciones locales.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Cerrar las terminales abiertas, presionar el boton Play y verificar la ejecucion limpia en CMD.
+* Siguiente Tarea Inmediata: Verificar el contenido del archivo analizador_lexico_entrega.zip generado.
