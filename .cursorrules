@@ -1,18 +1,5 @@
-# DIRECTIVAS CRÍTICAS E INQUEBRANTABLES DE EJECUCIÓN AUTÓNOMA (TURBO MODE)
+# DIRECTIVAS OBLIGATORIAS DE EJECUCIÓN AUTÓNOMA
 
-## 1. PROHIBICIÓN DE EDICIÓN CON CONFIRMACIÓN MANUAL (ZERO-CLICK POLICY)
-- Con el fin de evitar que VS Code bloquee el flujo con el botón "Accept all" (Inline Diffs), **queda estrictamente prohibido** dejar cambios pendientes en el editor de diferencias o detener el flujo esperando confirmación manual del usuario.
-- Aplica modificaciones de archivos escribiendo directamente en disco mediante scripts de Python (`pathlib.Path.write_text(..., encoding='utf-8')`) ejecutados en la terminal integrada o mediante escritura atómica directa sin intermediación interactiva.
-
-## 2. EJECUCIÓN AUTÓNOMA EN TERMINAL
-- Ejecuta los comandos de terminal (`python`, `git`, herramientas de compilación) de forma autónoma e inmediata sin requerir aprobación paso a paso.
-
-## 3. PROTOCOLO OBLIGATORIO DE VERIFICACIÓN, AUTO-COMMIT Y AUTO-PUSH
-- **NUNCA** des por finalizada una respuesta o tarea dejando archivos modificados sin commitear en el panel de Source Control.
-- Inmediatamente después de modificar cualquier archivo del proyecto, valida que no existan errores de sintaxis (`python -m py_compile <archivo>`).
-- Tras verificar la sintaxis, **DEBES ejecutar de forma autónoma y obligatoria en la terminal**:
-  ```bash
-  git add -A
-  git commit -m "<tipo>(<alcance>): <descripcion concisa del cambio en español>"
-  git push origin main
-  ```
+- REGLA DE ORO (BLOQUEO DE HERRAMIENTAS DE EDICIÓN UI): Queda ESTRICTAMENTE PROHIBIDO utilizar las herramientas nativas de edición de archivos del IDE (`edit_file`, `write_to_file`, `replace_in_file`, `insert_edit_into_file` o equivalentes) ya que bloquean el flujo con el cartel "Accept all" de VS Code.
+- ESCRITURA EXCLUSIVA VÍA TERMINAL (DISK BYPASS): Toda creación o modificación de archivos (`.py`, `.json`, `.txt`, `.md`) DEBE ejecutarse única y exclusivamente a través de la herramienta de ejecución de comandos de terminal, corriendo scripts de Python (`pathlib.Path.write_text(..., encoding="utf-8")`) directamente sobre el sistema de archivos.
+- VERIFICACIÓN Y AUTO-COMMIT EN EL MISMO COMANDO: En la misma ejecución de terminal donde el script de Python escriba los archivos en disco, encadena de inmediato `python -m py_compile` sobre los módulos modificados seguido de `git add -A`, `git commit -m "..."` y `git push origin main`.

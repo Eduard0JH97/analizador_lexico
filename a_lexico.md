@@ -19,5 +19,7 @@
 - [Hito 13]: Adicion de set secundario de pruebas en tests/ para C, Java, SQL y Python con casos de borde y errores especificos.
 - [Hito 14]: Implementacion de rastreo de linea y columna en Lexer y Parser para diagnostico preciso de errores.
 
+- [Hito 15]: Bloqueo estricto de herramientas nativas de edicion UI y escritura exclusiva por terminal via pathlib para erradicar el dialogo Accept all.
+
 ## 7. Próximos Pasos
 * Siguiente Tarea Inmediata: Ejecutar pruebas con archivos con errores en tests/ para comprobar el reporte con ubicacion espacial.
