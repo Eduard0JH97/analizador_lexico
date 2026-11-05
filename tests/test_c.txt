@@ -1,4 +1,0 @@
-int variable1 = 100;
-if (variable1 >= 50) {
-    variable1 = variable1 * 2;
-}
