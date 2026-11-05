@@ -25,5 +25,7 @@
 
 - [Hito 17]: Adicion de modo de verificacion rapida automatica en main.py para validar casos de prueba base.
 
+- [Hito 18]: Remocion de la opcion 5 en main.py restaurando el menu principal enfocado exclusivamente en seleccion de lenguajes y salida.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Ejecutar la opcion de verificacion rapida desde el menu principal y comprobar el reporte en consola.
+* Siguiente Tarea Inmediata: Ejecutar main.py y verificar que el menu presente unicamente las opciones del 0 al 4.

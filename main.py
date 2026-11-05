@@ -84,88 +84,6 @@ def analizar_archivo(ruta_txt: str, lexer: Lexer, lenguaje: str):
     except Exception as e:
         print(f"\n[Error durante el analisis]: {e}")
 
-def verificacion_rapida():
-    pruebas = [
-        ("C", "rules/c_rules.json", "tests/c_valido.txt"),
-        ("Java", "rules/java_rules.json", "tests/java_valido.txt"),
-        ("SQL", "rules/sql_rules.json", "tests/sql_valido.txt"),
-        ("Python", "rules/python_rules.json", "tests/python_valido.txt")
-    ]
-
-    print("\n" + "=" * 80)
-    print("                    VERIFICACIÓN RÁPIDA DE PRUEBAS BASE")
-    print("=" * 80)
-    print(f"{'Lenguaje':<10} {'Archivo':<28} {'Tokens':<10} {'Estado':<10} {'Errores Detectados'}")
-    print("-" * 80)
-
-    total_pasadas = 0
-    detalles_fallos = []
-
-    for lenguaje, ruta_reglas, ruta_txt in pruebas:
-        ruta_archivo = pathlib.Path(ruta_txt)
-        if not ruta_archivo.exists():
-            alt = ruta_txt.replace("_valido.txt", "_correcto.txt")
-            if pathlib.Path(alt).exists():
-                ruta_archivo = pathlib.Path(alt)
-                ruta_txt = alt
-
-        if not pathlib.Path(ruta_reglas).exists():
-            print(f"{lenguaje:<10} {ruta_txt:<28} {'N/A':<10} {'FALLÓ':<10} Reglas no encontradas ({ruta_reglas})")
-            detalles_fallos.append((lenguaje, [f"No existe el archivo de reglas: {ruta_reglas}"]))
-            continue
-
-        if not ruta_archivo.exists():
-            print(f"{lenguaje:<10} {ruta_txt:<28} {'N/A':<10} {'FALLÓ':<10} Archivo no encontrado ({ruta_txt})")
-            detalles_fallos.append((lenguaje, [f"No existe el archivo de prueba: {ruta_txt}"]))
-            continue
-
-        try:
-            codigo = leer_archivo(str(ruta_archivo))
-            lexer = Lexer(ruta_reglas)
-            tokens = lexer.tokenize(codigo)
-
-            tokens_utiles = [t for t in tokens if t[0] != "ESPACIO"]
-            cant_tokens = len(tokens_utiles)
-
-            errores_lex = [
-                f"[Línea {linea}, Col {col}] Carácter no admitido '{val}'"
-                for tipo, val, linea, col in tokens
-                if tipo == "DESCONOCIDO"
-            ]
-
-            errores_sint = []
-            if not errores_lex:
-                parser = Parser(tokens, lenguaje=lenguaje)
-                errores_sint = parser.parse()
-
-            total_errores = errores_lex + errores_sint
-
-            if not total_errores:
-                estado = "PASÓ"
-                resumen_err = "0 errores"
-                total_pasadas += 1
-            else:
-                estado = "FALLÓ"
-                resumen_err = f"{len(total_errores)} error(es)"
-                detalles_fallos.append((lenguaje, total_errores))
-
-            print(f"{lenguaje:<10} {ruta_txt:<28} {cant_tokens:<10} {estado:<10} {resumen_err}")
-
-        except Exception as e:
-            estado = "FALLÓ"
-            print(f"{lenguaje:<10} {ruta_txt:<28} {'-':<10} {estado:<10} Excepción: {e}")
-            detalles_fallos.append((lenguaje, [str(e)]))
-
-    print("-" * 80)
-    print(f"Resultado: {total_pasadas}/{len(pruebas)} pruebas superadas.")
-    if detalles_fallos:
-        print("\n[!] Detalle de errores detectados:")
-        for lang, errs in detalles_fallos:
-            print(f"  * {lang}:")
-            for err in errs:
-                print(f"      - {err}")
-    print("=" * 80)
-
 def main():
     while True:
         print("\n" + "=" * 45)
@@ -175,22 +93,16 @@ def main():
         print("2. Java")
         print("3. SQL")
         print("4. Python")
-        print("5. Verificación Rápida (Ejecutar pruebas base)")
         print("0. Salir del programa")
         
-        opcion = input("Seleccione una opcion (0-5): ").strip()
+        opcion = input("Seleccione una opcion (0-4): ").strip()
         
         if opcion == "0":
             print("\nFinalizando ejecucion del programa. ¡Hasta pronto!")
             break
-
-        if opcion == "5":
-            verificacion_rapida()
-            input("\nPresione [ENTER] para continuar...")
-            continue
             
         if opcion not in OPCIONES_LENGUAJES:
-            print("\n[!] Opcion no valida. Seleccione un numero del 0 al 5.")
+            print("\n[!] Opcion no valida. Seleccione un numero del 0 al 4.")
             continue
 
         lenguaje, ruta_reglas = OPCIONES_LENGUAJES[opcion]
