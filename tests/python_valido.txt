@@ -1,0 +1,4 @@
+total = 100
+if total > 50:
+def calcular():
+

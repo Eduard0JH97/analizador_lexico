@@ -23,5 +23,7 @@
 
 - [Hito 16]: Configuracion de launch.json y settings.json para ejecucion limpia con boton Play de VS Code.
 
+- [Hito 17]: Adicion de modo de verificacion rapida automatica en main.py para validar casos de prueba base.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Presionar el boton Play (▷) en la esquina superior derecha y verificar el inicio del menu interactivo.
+* Siguiente Tarea Inmediata: Ejecutar la opcion de verificacion rapida desde el menu principal y comprobar el reporte en consola.
