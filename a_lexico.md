@@ -27,5 +27,7 @@
 
 - [Hito 18]: Remocion de la opcion 5 en main.py restaurando el menu principal enfocado exclusivamente en seleccion de lenguajes y salida.
 
+- [Hito 19]: Configuracion de Command Prompt como terminal por defecto en settings.json para mitigar el bug de comillas dobles del boton Play.
+
 ## 7. Próximos Pasos
-* Siguiente Tarea Inmediata: Ejecutar main.py y verificar que el menu presente unicamente las opciones del 0 al 4.
+* Siguiente Tarea Inmediata: Cerrar las terminales abiertas, presionar el boton Play y verificar la ejecucion limpia en CMD.
