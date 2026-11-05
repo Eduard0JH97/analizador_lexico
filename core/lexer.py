@@ -34,6 +34,11 @@ class Lexer:
         for match in self.token_regex.finditer(source_code):
             tipo = match.lastgroup
             valor = match.group(tipo)
+            start_pos = match.start()
+            
+            linea = source_code.count('\n', 0, start_pos) + 1
+            last_newline = source_code.rfind('\n', 0, start_pos)
+            columna = start_pos + 1 if last_newline == -1 else start_pos - last_newline
             
             if tipo == 'ESPACIO':
                 continue
@@ -43,5 +48,5 @@ class Lexer:
                 if valor in palabras or (self.rules.get('lenguaje') == 'SQL' and valor.upper() in palabras):
                     tipo = 'PALABRA_RESERVADA'
                 
-            tokens.append((tipo, valor))
+            tokens.append((tipo, valor, linea, columna))
         return tokens

@@ -59,11 +59,12 @@ def analizar_archivo(ruta_txt: str, lexer: Lexer, lenguaje: str):
         tokens = lexer.tokenize(codigo)
 
         errores_lexicos = 0
-        for tipo, valor in tokens:
+        for tipo, valor, linea, columna in tokens:
             if tipo != "ESPACIO":
-                print(f"{tipo:<20} -> {valor}")
+                pos_str = f"[Línea {linea}, Col {columna}]"
+                print(f"{pos_str:<22} {tipo:<20} -> {valor}")
             if tipo == "DESCONOCIDO":
-                print(f"  [!] ERROR LEXICO: Caracter no admitido '{valor}'")
+                print(f"  [!] ERROR LEXICO [Línea {linea}, Col {columna}]: Caracter no admitido '{valor}'")
                 errores_lexicos += 1
 
         if errores_lexicos > 0:
